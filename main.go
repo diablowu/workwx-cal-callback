@@ -5,6 +5,7 @@ import (
 	"diablowu/workwx-cal-callback/wxapi"
 	"flag"
 	"github.com/gin-gonic/gin"
+	"log"
 )
 
 var (
@@ -19,6 +20,10 @@ var (
 func main() {
 
 	flag.Parse()
+
+	if *corpId == "" || *callBackToken == "" || *callBackAesKey == "" || *agentId == "" || *secret == "" {
+		log.Fatal("check your command line parameters!! \n")
+	}
 
 	wxapi.Init(func(context *wxapi.Context) {
 		context.AesKey = *callBackAesKey
